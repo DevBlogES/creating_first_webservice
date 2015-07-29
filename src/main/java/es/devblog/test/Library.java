@@ -4,6 +4,7 @@ import es.devblog.test.Model.Book;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Library {
 	private static Library ourInstance;
@@ -34,13 +35,19 @@ public class Library {
 	}
 
 	public List<Book> findBooksByTitle(String title) {
-		List<Book> bookToReturn = new ArrayList<>();
+		//Java 8 approach
+		List<Book> booksToReturn = books.stream()
+				.filter(book -> book.getTitle().toLowerCase().contains(title.toLowerCase()))
+				.collect(Collectors.toList());
+
+		//Java 7 approach
+		/*List<Book> booksToReturn = new ArrayList<>();
 		for (Book book : books) {
 			if (book.getTitle().toLowerCase().contains(title.toLowerCase())) {
 				bookToReturn.add(book);
 			}
-		}
+		}*/
 
-		return bookToReturn;
+		return booksToReturn;
 	}
 }
