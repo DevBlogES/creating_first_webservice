@@ -33,13 +33,14 @@ public class Library {
 		return this;
 	}
 
-	public Book getBook(Long id) {
+	public List<Book> findBooksByTitle(String title) {
+		List<Book> bookToReturn = new ArrayList<>();
 		for (Book book : books) {
-			if (book.getId().equals(id)) {
-				return book;
+			if (book.getTitle().toLowerCase().contains(title.toLowerCase())) {
+				bookToReturn.add(book);
 			}
 		}
 
-		return null;
+		return bookToReturn;
 	}
 }

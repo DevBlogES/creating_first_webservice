@@ -13,13 +13,13 @@ public class LibraryController {
 
 	// http://localhost:8080/books
 	@RequestMapping("/books")
-	public List<Book> getBook() {
+	public List<Book> findAll() {
 		return Library.getInstance().getBooks();
 	}
 
-	// http://localhost:8080/book?id=0
-	@RequestMapping("/book")
-	public Book getBook(@RequestParam(value = "id", defaultValue = "0", required = true) Long id) {
-		return Library.getInstance().getBook(id);
+	// http://localhost:8080/book/find?title=spring
+	@RequestMapping("/books/find")
+	public List<Book> findBooksByTitle(@RequestParam(value = "title", defaultValue = "null", required = true) String title) {
+		return Library.getInstance().findBooksByTitle(title);
 	}
 }
